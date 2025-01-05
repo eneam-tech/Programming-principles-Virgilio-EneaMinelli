@@ -89,6 +89,7 @@ class Virgilio:
                 for line in file.readlines():
                     verses_number += 1
         print(verses_number)
+        return(verses_number)
     
     #3. This method counts the tercets
     def count_tercets(self, canto_number):
@@ -205,13 +206,17 @@ class Virgilio:
         verses_quantity = 0
 
         canti_count = 0
+        
         for i in canti_list:
             canti_count +=1
-            verses_quantity = self.count_verses(canti_count)
-            selected_canto = {"canto number" : canti_count, "verses" : verses_quantity}
-            if selected_canto["verses"] > longest_canto["verses"]:
-                longest_canto["verses"] = selected_canto["verses"]
-                longest_canto["canto number"] = selected_canto["canto number"]
+            if canti_count < 35:
+                verses_quantity = self.count_verses(canti_count)
+                selected_canto = {"canto number" : canti_count, "verses" : verses_quantity}
+                if selected_canto["verses"] > longest_canto["verses"]:
+                    longest_canto["verses"] = selected_canto["verses"]
+                    longest_canto["canto number"] = selected_canto["canto number"]
+            else:
+                break
         
         print(
             f"The longest canto is number {longest_canto['canto number']} " 
